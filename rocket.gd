@@ -4,21 +4,20 @@ export (int) var engine_thrust
 export (int) var spin_thrust
 export (int) var x
 export (int) var y
-
+var bol = true
 var thrust = Vector2() # (0,0) am Anfang
 var rotation_dir = 0
 var screensize 
-
 
 
 func _ready():
 	screensize = get_viewport().get_visible_rect().size
 	
 func get_input():
-	if Input.is_action_just_released("ui_up"):
+	if Input.is_action_just_released("ui_up"): #Spielt sound
 				$RocketSound.stop()	
 			
-	if Input.is_action_pressed("ui_up"): #Schub nach oben
+	if Input.is_action_pressed("ui_up"): #Schub nach oben mit sound
 		thrust = Vector2(engine_thrust, -10)
 		if $RocketSound.is_playing() == false:
 			$RocketSound.play()
@@ -37,6 +36,7 @@ func _process(delta):
 func set_pos(x,y):
 	position.x = x
 	position.y = y
+	
 
 	
 	
